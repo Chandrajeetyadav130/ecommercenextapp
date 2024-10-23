@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { IoMdCart, IoIosCloseCircle } from "react-icons/io";
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
+import { MdOutlineAccountCircle } from "react-icons/md";
 import Link from 'next/link';
 import { useRef } from 'react';
 const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subtotal }) => {
@@ -21,26 +22,27 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subtotal }) => {
   }
   return (
     <>
-      <div className='flex flex-col justify-start sm:flex-col md:flex-row lg:justify-between px-4  py-4  top-0 shadow-md sticky bg-pink-400 z-50 w-full'>
+      <div className='flex w-full top-0 shadow-md sticky bg-pink-400 z-50'>
+        <div  className='w-[90%] sm:w-[95%] logo link flex flex-col justify-start sm:flex-col md:flex-row lg:justify-between px-4  py-4   '>
+          <Image className="cursor-pointer" src="/ecommerce.jpg" alt='web logo' width={20} height={20} />
+          <ul className='flex mx-2 gap-5 my-4 sm:my-auto'>
+            <Link href={"/Tshirt"}>
+              <li className='text-white cursor-pointer font-bold hover:text-pink-100'>Tshirt</li>
+            </Link>
+            <Link href={'/Hoodies'}> <li className='text-white font-bold cursor-pointer hover:text-pink-100'>Hoodies</li></Link>
+            <Link href={"/Sticker"}><li className='text-white font-bold cursor-pointer hover:text-pink-100'>Sticker</li></Link>
+            <Link href={"/Mugs"}> <li className='text-white font-bold cursor-pointer hover:text-pink-100'>Mugs</li></Link>
+          </ul>
+        </div>
 
-        <Image className="cursor-pointer" src="/ecommerce.jpg" alt='web logo' width={20} height={20} />
-        <ul className='flex mx-2 gap-4'>
-          <Link href={"/Tshirt"}>
-            <li className='text-white cursor-pointer font-bold hover:text-pink-100'>Tshirt</li>
-          </Link>
-          <Link href={'/Hoodies'}> <li className='text-white font-bold cursor-pointer hover:text-pink-100'>Hoodies</li></Link>
-          <Link href={"/Sticker"}><li className='text-white font-bold cursor-pointer hover:text-pink-100'>Sticker</li></Link>
-          <Link href={"/Mugs"}> <li className='text-white font-bold cursor-pointer hover:text-pink-100'>Mugs</li></Link>
-        </ul>
-        <div onClick={handleCloseCart}>
-          <span></span>
-          <IoMdCart className='cursor-pointer' color='pink' size={20} />
+        <div className='flex w-[10%] sm:w-[5%] m-auto  px-4  py-4' >
+          <Link href={"/Login"}><MdOutlineAccountCircle className='cursor-pointer' color='pink' size={20}/></Link>
+          <IoMdCart onClick={handleCloseCart} className='cursor-pointer' color='pink' size={20} />
         </div>
 
       </div>
-      <div ref={ref}  className={`sidecart min-w-[250px] px-5 py-10 fixed top-0 h-full right-0 bg-pink-400 z-[52] transform transition-transform ${
-    Object.keys(cart).length === 0 ? "translate-x-full" : "translate-x-0"
-  }`}>
+      <div ref={ref} className={`sidecart min-w-[250px] px-5 py-10 fixed top-0 h-full right-0 bg-pink-400 z-[52] transform transition-transform ${Object.keys(cart).length === 0 ? "translate-x-full" : "translate-x-0"
+        }`}>
         <h2>shopping cart</h2>
         <span onClick={handleCloseCart} className='absolute top-2 text-4xl text-pink-700 right-2 cursor-pointer'><IoIosCloseCircle /></span>
         <ol>
@@ -51,10 +53,10 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subtotal }) => {
                 <div className='flex'>
                   <div className="w-2/3 text-black">{cart[k].name}</div>
                   <div className="w-1/3 flex mx-1 gap-1">
-                  <FaMinusCircle onClick={()=>removeFromCart(k,1,cart[k].price,cart[k].name,cart[k].size,cart[k].variant)} className='text-pink-500 text-xl cursor-pointer' />
-                  <span className='text-white text-sm'>{cart[k].qty}</span>
-                    <FaPlusCircle onClick={()=>addToCart(k,1,cart[k].price,cart[k].name,cart[k].size,cart[k].variant)} className='text-pink-500 text-xl cursor-pointer ' />
-                    
+                    <FaMinusCircle onClick={() => removeFromCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant)} className='text-pink-500 text-xl cursor-pointer' />
+                    <span className='text-white text-sm'>{cart[k].qty}</span>
+                    <FaPlusCircle onClick={() => addToCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant)} className='text-pink-500 text-xl cursor-pointer ' />
+
                   </div>
 
                 </div>
@@ -65,7 +67,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subtotal }) => {
 
         </ol>
         <div className='font-bold'>
-        <span>Subtotal ₹{subtotal}</span>
+          <span>Subtotal ₹{subtotal}</span>
 
         </div>
         <div className="flex">
