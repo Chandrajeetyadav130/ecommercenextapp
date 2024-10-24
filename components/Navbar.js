@@ -23,9 +23,9 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subtotal }) => {
   return (
     <>
       <div className='flex w-full top-0 shadow-md sticky bg-pink-400 z-50'>
-        <div  className='w-[90%] sm:w-[95%] logo link flex flex-col justify-start sm:flex-col md:flex-row lg:justify-between px-4  py-4   '>
+        <div  className='w-[75%] sm:w-[82%] logo link flex flex-col justify-start sm:flex-col md:flex-row lg:justify-between px-4  py-4   '>
           <Image className="cursor-pointer" src="/ecommerce.jpg" alt='web logo' width={20} height={20} />
-          <ul className='flex mx-2 gap-5 my-4 sm:my-auto'>
+          <ul className='flex mx-2 gap-3 my-4 py-2 sm:my-auto'>
             <Link href={"/Tshirt"}>
               <li className='text-white cursor-pointer font-bold hover:text-pink-100'>Tshirt</li>
             </Link>
@@ -35,7 +35,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subtotal }) => {
           </ul>
         </div>
 
-        <div className='flex w-[10%] sm:w-[5%] m-auto  px-4  py-4' >
+        <div className='flex justify-end gap-4 w-[25%] sm:w-[18%] m-auto  px-4  py-4' >
           <Link href={"/Login"}><MdOutlineAccountCircle className='cursor-pointer' color='pink' size={20}/></Link>
           <IoMdCart onClick={handleCloseCart} className='cursor-pointer' color='pink' size={20} />
         </div>
