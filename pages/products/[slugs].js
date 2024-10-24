@@ -2,7 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import { useState } from 'react'
-const slugs = ({cart,addToCart,removeFromCart,clearCart,subtotal}) => {
+const Slugs = ({cart,addToCart,removeFromCart,clearCart,subtotal}) => {
   const router = useRouter()
   // console.log(router.query.slugs)
   const [pin,setPin]=useState()
@@ -129,6 +129,6 @@ const slugs = ({cart,addToCart,removeFromCart,clearCart,subtotal}) => {
   )
 }
 
-export default slugs
+export default Slugs
 
  
