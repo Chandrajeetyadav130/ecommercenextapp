@@ -1,6 +1,6 @@
 import { Schema, models, model } from "mongoose";
 const ProductSchema=new Schema({
-    title:{type:String,unique:false,required:true},
+    title:{type:String,required:true},
     slugs:{type:String, unique: true,required:true},
     desc:{type:String,required:true},
     img:{type:String,required:true},

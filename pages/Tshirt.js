@@ -21,7 +21,6 @@ const Tshirt = ({products}) => {
         <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1 truncate text-ellipsis">{products[items].title}</h3>
         <h2 className="text-gray-900 title-font text-lg font-medium truncate text-ellipsis">{products[items].slugs}</h2>
         <p className="mt-1 truncate text-ellipsis">₹{products[items].price}</p>
-        <p className='truncate text-ellipsis font-semibold'>color:{items.color}</p>
 
         <div className='truncate text-ellipsis font-semibold'>
           {products[items].size.includes('s') && <span className='border-gray-200 mx-1'>s</span>}
@@ -36,6 +35,8 @@ const Tshirt = ({products}) => {
           {products[items].color.includes('blue') && <button className="border-2  bg-blue-500 rounded-full w-6 h-6 focus:outline-none"></button>}
           {products[items].color.includes('green') && <button className="border-2  bg-green-500 rounded-full w-6 h-6 focus:outline-none"></button>}
           {products[items].color.includes('yellow') && <button className="border-2  bg-yellow-500 rounded-full w-6 h-6 focus:outline-none"></button>}
+          {products[items].color.includes('black') && <button className="border-2  bg-black rounded-full w-6 h-6 focus:outline-none"></button>}
+        
           {products[items].color.includes('pink') && <button className="border-2  bg-pink-500 rounded-full w-6 h-6 focus:outline-none"></button>}
           </div>
 
