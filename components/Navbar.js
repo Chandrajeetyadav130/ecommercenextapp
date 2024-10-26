@@ -51,7 +51,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subtotal }) => {
             return (
               <li className='list-decimal font-semibold text-sm  my-4' key={k}>
                 <div className='flex'>
-                  <div className="w-2/3 text-black">{cart[k].name}</div>
+                  <div className="w-2/3 text-black">{cart[k].name} ({cart[k].size.toUpperCase()}/{cart[k].variant})</div>
                   <div className="w-1/3 flex mx-1 gap-1">
                     <FaMinusCircle onClick={() => removeFromCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant)} className='text-pink-500 text-xl cursor-pointer' />
                     <span className='text-white text-sm'>{cart[k].qty}</span>

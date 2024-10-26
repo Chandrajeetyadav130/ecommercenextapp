@@ -23,11 +23,11 @@ const Tshirt = ({products}) => {
         <p className="mt-1 truncate text-ellipsis">₹{products[items].price}</p>
 
         <div className='truncate text-ellipsis font-semibold'>
-          {products[items].size.includes('s') && <span className='border-gray-200 mx-1'>s</span>}
-          {products[items].size.includes('m') && <span className='border-gray-200 mx-1'>m</span>}
-          {products[items].size.includes('l') && <span className='border-gray-200 mx-1'>l</span>}
-          {products[items].size.includes('xl') && <span className='border-gray-200 mx-1'>xl</span>}
-          {products[items].size.includes('xxl') && <span className='border-gray-200 mx-1'>xxl</span>}
+          {products[items].size.includes('s') && <span className='border-gray-200 mx-1'>S</span>}
+          {products[items].size.includes('m') && <span className='border-gray-200 mx-1'>M</span>}
+          {products[items].size.includes('l') && <span className='border-gray-200 mx-1'>L</span>}
+          {products[items].size.includes('xl') && <span className='border-gray-200 mx-1'>XL</span>}
+          {products[items].size.includes('xxl') && <span className='border-gray-200 mx-1'>XXl</span>}
           </div>
           <div className='truncate text-ellipsis font-semibold'>
           {products[items].color.includes('red') &&<button className="border-2  bg-red-500 rounded-full w-6 h-6 focus:outline-none"></button>
