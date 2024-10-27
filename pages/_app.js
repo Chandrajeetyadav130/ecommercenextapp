@@ -2,8 +2,9 @@ import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useState ,useEffect} from "react";
-
+import { useRouter } from "next/router";
 export default function App({ Component, pageProps }) {
+  const router=useRouter()
   const[cart, setCart] = useState({})
   const [subtotal, setSubtotal] = useState(0)
   useEffect(()=>{
@@ -28,10 +29,16 @@ export default function App({ Component, pageProps }) {
     }
     setSubtotal(subt)
   }
+  const buyNow=(itemcode, qty, price, name, size, variant)=>{
+   let newCart={itemcode:{qty,price,name, size, variant}}
+   setCart(newCart)
+   saveCart(newCart)
+   router.push("/Checkout")
+  }
   const addToCart = (itemcode, qty, price, name, size, variant) => {
     let newCart =JSON.parse(JSON.stringify(cart))
     if (itemcode in cart) {
-      newCart[itemcode].qty = cart[itemcode].qty + 1;
+      newCart[itemcode].qty = cart[itemcode].qty + qty;
 
     }
     else {
@@ -49,7 +56,7 @@ export default function App({ Component, pageProps }) {
     console.log(qty)
     let newCart =JSON.parse(JSON.stringify(cart))
     if (itemcode in cart) {
-      newCart[itemcode].qty = cart[itemcode].qty - 1;
+      newCart[itemcode].qty = cart[itemcode].qty - qty;
 
     }
     if(newCart[itemcode]["qty"]<=0){ //qty is field not a variable
@@ -62,7 +69,7 @@ export default function App({ Component, pageProps }) {
   }
   return <>
     <Navbar  cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subtotal={subtotal}/>
-    <Component cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subtotal={subtotal} {...pageProps} />
+    <Component buyNow={buyNow} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subtotal={subtotal} {...pageProps} />
     <Footer />
 
   </>;

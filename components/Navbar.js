@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import Image from 'next/image'
 import { IoMdCart, IoIosCloseCircle } from "react-icons/io";
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
@@ -7,19 +7,18 @@ import Link from 'next/link';
 import { useRef } from 'react';
 const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subtotal }) => {
   const ref = useRef()
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  useEffect(() => {
+    // Open the sidebar whenever cart has items
+    if (Object.keys(cart).length > 0) {
+      setIsSidebarOpen(true);
+    }
+  }, [cart]);
+
   const handleCloseCart = () => {
-    if (ref.current.classList.contains('translate-x-full')) {
-      ref.current.classList.remove('translate-x-full')
-      ref.current.classList.add('translate-x-0')
+    setIsSidebarOpen(!isSidebarOpen); // Toggle the sidebar state
+  };
 
-    }
-    else if (!ref.current.classList.contains('translate-x-full')) {
-      ref.current.classList.remove('translate-x-0')
-      ref.current.classList.add('translate-x-full')
-
-
-    }
-  }
   return (
     <>
       <div className='flex w-full top-0 shadow-md sticky bg-pink-400 z-50'>
@@ -41,7 +40,9 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subtotal }) => {
         </div>
 
       </div>
-      <div ref={ref} className={`sidecart min-w-[250px] px-5 py-10 fixed top-0 h-full right-0 bg-pink-400 z-[52] transform transition-transform ${Object.keys(cart).length === 0 ? "translate-x-full" : "translate-x-0"
+      <div ref={ref} className={`overflow-y-scroll sidecart min-w-[250px] px-5 py-10 fixed top-0 h-full right-0 bg-pink-400 z-[52] transform transition-transform ${
+          isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
+        
         }`}>
         <h2>shopping cart</h2>
         <span onClick={handleCloseCart} className='absolute top-2 text-4xl text-pink-700 right-2 cursor-pointer'><IoIosCloseCircle /></span>
