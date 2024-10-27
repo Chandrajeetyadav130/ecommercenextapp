@@ -1,95 +1,83 @@
-import React from 'react'
 import Link from 'next/link'
-
-const Sticker = () => {
+import React from 'react'
+import Product from '@/models/Product'
+import connectDb from '@/middleware/mongoose'
+import mongoose from 'mongoose'
+const Sticker = ({products}) => {
+  // const p=Object.keys(products)
   return (
     <div>
-              <section className="text-gray-600 body-font">
+        <section className="text-gray-600 body-font">
   <div className="container px-5 py-24 mx-auto">
-    <div className="flex flex-wrap m-4 gap-4 ">
-      <Link href={'/products/wear-for-comfort'} className='lg:w-1/5 md:w-1/2 p-4 w-full shadow'>
-      {/* <div className=""> */}
-        <div className="block relative w-full rounded overflow-hidden">
-          <img alt="ecommerce" className="m-auto md:m-0  block" src="https://m.media-amazon.com/images/I/41Wb4EX6fuL._SX300_SY300_QL70_FMwebp_.jpg"/>
-        </div>
-        <div className="mt-4 text-center sm:text-start">
-          <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">Tshirt</h3>
-          <h2 className="text-gray-900 title-font text-lg font-medium">Wear for comfort</h2>
-          <p className="mt-1">₹16.00</p>
-          <p>sm md lg xl xxl</p>
-        {/* </div> */}
+    <div className="flex flex-wrap m-4 gap-4 justify-center">
+ {Object.keys(products).map((items)=>{
+  return(
+    <Link key={products[items]._id} href={`/products/${products[items].slugs}`} className='hover:shadow lg:w-1/5 md:w-1/2 p-4 w-full border'>
+    <div>
+      <div className="block relative w-full rounded overflow-hidden h-[300px] ">
+        <img alt="ecommerce" className="m-auto md:m-0  block " src={products[items].img}/>
       </div>
-      </Link>
-      <Link href={'/products/wear-for-comfort'} className='lg:w-1/5 md:w-1/2 p-4 w-full shadow'>
-      <div className="">
-        <div className="block relative w-full rounded overflow-hidden">
-          <img alt="ecommerce" className="m-auto md:m-0  block" src="https://m.media-amazon.com/images/I/41Wb4EX6fuL._SX300_SY300_QL70_FMwebp_.jpg"/>
-        </div>
-        <div className="mt-4 text-center sm:text-start">
-          <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">Tshirt</h3>
-          <h2 className="text-gray-900 title-font text-lg font-medium">Wear for comfort</h2>
-          <p className="mt-1">₹16.00</p>
-          <p>sm md lg xl xxl</p>
-        </div>
+      <div className="mt-4 text-center sm:text-start">
+        <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1 truncate text-ellipsis">{products[items].title}</h3>
+        <h2 className="text-gray-900 title-font text-lg font-medium truncate text-ellipsis">{products[items].slugs}</h2>
+        <p className="mt-1 truncate text-ellipsis">₹{products[items].price}</p>
+
+        <div className='truncate text-ellipsis font-semibold'>
+          {products[items].size.includes('s') && <span className='border-gray-200 mx-1'>S</span>}
+          {products[items].size.includes('m') && <span className='border-gray-200 mx-1'>M</span>}
+          {products[items].size.includes('l') && <span className='border-gray-200 mx-1'>L</span>}
+          {products[items].size.includes('xl') && <span className='border-gray-200 mx-1'>XL</span>}
+          {products[items].size.includes('xxl') && <span className='border-gray-200 mx-1'>XXl</span>}
+          </div>
+          <div className='truncate text-ellipsis font-semibold'>
+          {products[items].color.includes('red') &&<button className="border-2  bg-red-500 rounded-full w-6 h-6 focus:outline-none"></button>
+          }
+          {products[items].color.includes('blue') && <button className="border-2  bg-blue-500 rounded-full w-6 h-6 focus:outline-none"></button>}
+          {products[items].color.includes('green') && <button className="border-2  bg-green-500 rounded-full w-6 h-6 focus:outline-none"></button>}
+          {products[items].color.includes('yellow') && <button className="border-2  bg-yellow-500 rounded-full w-6 h-6 focus:outline-none"></button>}
+          {products[items].color.includes('black') && <button className="border-2  bg-black rounded-full w-6 h-6 focus:outline-none"></button>}
+        
+          {products[items].color.includes('pink') && <button className="border-2  bg-pink-500 rounded-full w-6 h-6 focus:outline-none"></button>}
+          </div>
+
       </div>
-      </Link>
-      <Link href={'/products/wear-for-comfort'} className='lg:w-1/5 md:w-1/2 p-4 w-full shadow'>
-      <div className="">
-        <div className="block relative w-full rounded overflow-hidden">
-          <img alt="ecommerce" className="m-auto md:m-0  block" src="https://m.media-amazon.com/images/I/41Wb4EX6fuL._SX300_SY300_QL70_FMwebp_.jpg"/>
-        </div>
-        <div className="mt-4 text-center sm:text-start">
-          <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">Tshirt</h3>
-          <h2 className="text-gray-900 title-font text-lg font-medium">Wear for comfort</h2>
-          <p className="mt-1">₹16.00</p>
-          <p>sm md lg xl xxl</p>
-        </div>
-      </div>
-      </Link>
-      <Link href={'/products/wear-for-comfort'} className='lg:w-1/5 md:w-1/2 p-4 w-full shadow'>
-      <div className="">
-        <div className="block relative w-full rounded overflow-hidden">
-          <img alt="ecommerce" className="m-auto md:m-0  block" src="https://m.media-amazon.com/images/I/41Wb4EX6fuL._SX300_SY300_QL70_FMwebp_.jpg"/>
-        </div>
-        <div className="mt-4 text-center sm:text-start">
-          <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">Tshirt</h3>
-          <h2 className="text-gray-900 title-font text-lg font-medium">Wear for comfort</h2>
-          <p className="mt-1">₹16.00</p>
-          <p>sm md lg xl xxl</p>
-        </div>
-      </div>
-      </Link>
-      <Link href={'/products/wear-for-comfort'} className='lg:w-1/5 md:w-1/2 p-4 w-full shadow'>
-      <div className="">
-        <div className="block relative w-full rounded overflow-hidden">
-          <img alt="ecommerce" className="m-auto md:m-0  block" src="https://m.media-amazon.com/images/I/41Wb4EX6fuL._SX300_SY300_QL70_FMwebp_.jpg"/>
-        </div>
-        <div className="mt-4 text-center sm:text-start">
-          <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">Tshirt</h3>
-          <h2 className="text-gray-900 title-font text-lg font-medium">Wear for comfort</h2>
-          <p className="mt-1">₹16.00</p>
-          <p>sm md lg xl xxl</p>
-        </div>
-      </div>
-      </Link>
-      <Link href={'/products/wear-for-comfort'} className='lg:w-1/5 md:w-1/2 p-4 w-full shadow'>
-      <div className="">
-        <div className="block relative w-full rounded overflow-hidden">
-          <img alt="ecommerce" className="m-auto md:m-0  block" src="https://m.media-amazon.com/images/I/41Wb4EX6fuL._SX300_SY300_QL70_FMwebp_.jpg"/>
-        </div>
-        <div className="mt-4 text-center sm:text-start">
-          <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">Tshirt</h3>
-          <h2 className="text-gray-900 title-font text-lg font-medium">Wear for comfort</h2>
-          <p className="mt-1">₹16.00</p>
-          <p>sm md lg xl xxl</p>
-        </div>
-      </div>
-      </Link>
+    </div>
+    </Link>
+  )
+ })}
+   
+  
     </div>
   </div>
 </section>
     </div>
   )
 }
-
+export async function getServerSideProps(context) {
+  if(!mongoose.connections[0].readyState){
+    await mongoose.connect(process.env.mongoUri)
+  }
+  let product=await Product.find({category:'stickers'})
+  let stickers={}
+  for(let item of product){
+    if(item.title in stickers){
+      if(!stickers[item.title].color.include(item.color)&& item.availability>0){
+        stickers[item.title].color.push(item.color)
+      }
+      if(!stickers[item.title].size.include(item.size) && item.availability>0){
+        stickers[item.title].size.push(item.size)
+      }
+    }
+    else{
+      stickers[item.title]=JSON.parse(JSON.stringify(item))
+      if(item.availability>0){
+        stickers[item.title].color=[item.color]
+        stickers[item.title].size=[item.size]
+      }
+    }
+  }
+  return {
+    props: { products:JSON.parse(JSON.stringify(stickers)) }, // will be passed to the page component as props
+  }
+}
 export default Sticker
